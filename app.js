@@ -3186,8 +3186,8 @@
   }
 
   function updateLeftNavLabel() {
-    const toggleBtn = $("leftNavToggleBtn");
-    if (!toggleBtn) return;
+    const railBtn = $("leftNavCloseBtn");
+    if (!railBtn) return;
     const keyMap = {
       workspace: "navMap",
       portfolio: "navPortfolio",
@@ -3197,21 +3197,21 @@
     const key = keyMap[state.activeView] || "navMap";
     const viewLabel = t(key, "Map Workspace");
     const fullTitle = `${t("leftNavTitle", "Open navigation panel & views")} · ${viewLabel}`;
-    toggleBtn.title = fullTitle;
-    toggleBtn.setAttribute("aria-label", fullTitle);
+    railBtn.title = fullTitle;
+    railBtn.setAttribute("aria-label", fullTitle);
   }
 
   function toggleLeftNav(open) {
     const drawer = $("leftNavDrawer");
     const backdrop = $("leftNavBackdrop");
-    const toggleBtn = $("leftNavToggleBtn");
+    const railToggleBtn = $("leftNavCloseBtn");
     if (!drawer) return;
     const nextOpen = open === undefined ? !drawer.classList.contains("is-open") : Boolean(open);
     drawer.classList.toggle("is-open", nextOpen);
-    drawer.setAttribute("aria-hidden", nextOpen ? "false" : "true");
+    drawer.setAttribute("aria-expanded", nextOpen ? "true" : "false");
     backdrop?.classList.toggle("is-hidden", !nextOpen);
-    toggleBtn?.classList.toggle("is-active", nextOpen);
-    toggleBtn?.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+    railToggleBtn?.classList.toggle("is-active", nextOpen);
+    railToggleBtn?.setAttribute("aria-expanded", nextOpen ? "true" : "false");
   }
 
   function setTopNavActive(id) {
@@ -3322,9 +3322,13 @@
     $("collapseInspectorBtn").addEventListener("click", () => toggleInspector(true));
     $("inspectorExpandTab").addEventListener("click", () => toggleInspector(false));
 
-    $("leftNavToggleBtn")?.addEventListener("click", () => toggleLeftNav());
-    $("leftNavCloseBtn")?.addEventListener("click", () => toggleLeftNav(false));
+    $("leftNavCloseBtn")?.addEventListener("click", () => toggleLeftNav());
     $("leftNavBackdrop")?.addEventListener("click", () => toggleLeftNav(false));
+    $("leftNavDrawer")?.addEventListener("click", (ev) => {
+      if (!$("leftNavDrawer").classList.contains("is-open") && !ev.target.closest("button, a")) {
+        toggleLeftNav(true);
+      }
+    });
 
     $("railMapBtn").addEventListener("click", () => {
       setWorkspaceView("workspace");
@@ -4163,7 +4167,7 @@
     },
     {
       getTargets: () => [
-        $("leftNavToggleBtn"),
+        $("leftNavCloseBtn"),
         document.querySelector(".cmd-right")
       ].filter((el) => el && el.getBoundingClientRect().width > 0),
       side: "bottom",
@@ -4206,7 +4210,7 @@
           tourTargetsOverride = null;
           setWorkspaceView("workspace");
           applyTheme(baseTheme, false, false);
-          flashTourControl($("leftNavToggleBtn"));
+          flashTourControl($("leftNavCloseBtn"));
           flashTourControl($("themeToggleBtn"));
           scheduleTour(() => realignTour(true), 240);
         }, 2460);

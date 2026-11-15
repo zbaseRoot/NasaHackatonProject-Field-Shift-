@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="styles.css?v=20261115k">
+  <link rel="stylesheet" href="styles.css?v=20261115n">
   <script>try{if(localStorage.getItem("field_shift_theme")==="dark")document.documentElement.dataset.theme="dark";}catch(_e){}</script>
 </head>
 <body>
@@ -31,10 +31,6 @@
 
     <header class="top-command-bar">
       <div class="cmd-left">
-        <button type="button" id="leftNavToggleBtn" class="left-nav-toggle-btn" title="Open navigation panel &amp; views" data-i18n-title="leftNavTitle" aria-label="Open navigation panel &amp; views" aria-expanded="false" aria-controls="leftNavDrawer">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-        </button>
-
         <div class="brand-lockup">
           <span class="brand-emblem">
             <img src="logo.svg" alt="Field Shift logo" class="brand-logo-img" width="32" height="32">
@@ -80,102 +76,93 @@
           <button type="button" id="langBtnEn" class="lang-btn is-active" data-lang="en" title="English">EN</button>
           <button type="button" id="langBtnUa" class="lang-btn" data-lang="ua" title="Українська">UA</button>
         </div>
-        <a id="githubRepoLink" class="github-link-btn cmd-secondary-action" href="https://github.com/zbaseRoot/NasaHackatonProject-Field-Shift-" target="_blank" rel="noopener noreferrer" title="Project repository on GitHub" data-i18n-title="githubRepoTitle" aria-label="GitHub repository">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-        </a>
       </div>
     </header>
 
-    <div id="leftNavBackdrop" class="left-nav-backdrop is-hidden" aria-hidden="true"></div>
-    <aside id="leftNavDrawer" class="left-nav-drawer" aria-label="Workspace navigation" aria-hidden="true">
-      <div class="left-nav-head">
-        <div class="left-nav-brand">
-          <span class="brand-emblem left-nav-emblem">
-            <img src="logo.svg" alt="Field Shift logo" class="brand-logo-img" width="28" height="28">
-          </span>
-          <div class="brand-text-col left-nav-brand-text">
-            <strong class="brand-name">Field Shift</strong>
-            <span class="brand-tag" data-i18n="leftNavSubtitle">Workspace Views</span>
+    <div class="workspace-shell">
+      <div id="leftNavBackdrop" class="left-nav-backdrop is-hidden" aria-hidden="true"></div>
+      <aside id="leftNavDrawer" class="left-nav-drawer" aria-label="Workspace navigation" aria-expanded="false">
+        <div class="left-nav-head">
+          <button type="button" id="leftNavCloseBtn" class="left-nav-expand-btn" title="Open navigation panel &amp; views" data-i18n-title="leftNavTitle" aria-label="Toggle navigation panel" aria-expanded="false">
+            <svg class="left-nav-expand-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <span class="left-nav-head-title" data-i18n="leftNavSubtitle">Workspace Views</span>
+        </div>
+
+        <div class="left-nav-body">
+          <span class="left-nav-section-label" data-i18n="leftNavViewsLabel">Workspace Tabs</span>
+          <nav class="left-nav-pills" aria-label="Workspace views">
+            <button type="button" id="railMapBtn" class="left-nav-btn top-nav-btn is-active" data-rail="workspace" title="Map Workspace" data-i18n-title="navMap">
+              <span class="left-nav-icon-box">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+              </span>
+              <span class="left-nav-btn-text">
+                <strong data-i18n="navMap">Map Workspace</strong>
+                <small data-i18n="navMapDesc">Satellite map, parcels &amp; inspector</small>
+              </span>
+            </button>
+            <button type="button" id="railPortfolioBtn" class="left-nav-btn top-nav-btn" data-rail="portfolio" title="Farm Portfolio" data-i18n-title="navPortfolio">
+              <span class="left-nav-icon-box">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16v-5"/><path d="M12 16V7"/><path d="M17 16v-8"/></svg>
+              </span>
+              <span class="left-nav-btn-text">
+                <strong data-i18n="navPortfolio">Farm Portfolio</strong>
+                <small data-i18n="navPortfolioDesc">Cross-field water &amp; 4-yr profit</small>
+              </span>
+            </button>
+            <button type="button" id="railCropsBtn" class="left-nav-btn top-nav-btn" data-rail="crops" title="12-Crop Matrix" data-i18n-title="navCrops">
+              <span class="left-nav-icon-box">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>
+              </span>
+              <span class="left-nav-btn-text">
+                <strong data-i18n="navCrops">12-Crop Matrix</strong>
+                <small data-i18n="navCropsDesc">Water demand, roots &amp; nitrogen</small>
+              </span>
+            </button>
+            <button type="button" id="railScienceBtn" class="left-nav-btn top-nav-btn" data-rail="science" title="NASA Science" data-i18n-title="navScience">
+              <span class="left-nav-icon-box">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              </span>
+              <span class="left-nav-btn-text">
+                <strong data-i18n="navScience">NASA Science</strong>
+                <small data-i18n="navScienceDesc">Live NASA POWER, FAO-56 &amp; SoilGrids</small>
+              </span>
+            </button>
+          </nav>
+
+          <div class="left-nav-mobile-tools">
+            <span class="left-nav-section-label" data-i18n="leftNavToolsLabel">Field Tools &amp; Export</span>
+            <div class="left-nav-tools-grid">
+              <button type="button" id="drawerDrawFieldBtn" class="btn-primary-sm">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="4" height="4" rx="1"/><rect x="17" y="3" width="4" height="4" rx="1"/><rect x="17" y="17" width="4" height="4" rx="1"/><rect x="3" y="17" width="4" height="4" rx="1"/><line x1="7" y1="5" x2="17" y2="5"/><line x1="19" y1="7" x2="19" y2="17"/><line x1="17" y1="19" x2="7" y2="19"/><line x1="5" y1="17" x2="5" y2="7"/></svg>
+                <span data-i18n="btnDrawField">Draw Field</span>
+              </button>
+              <button type="button" id="drawerImportGeoBtn" class="btn-outline-sm">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span data-i18n="btnGeoJson">GeoJSON</span>
+              </button>
+              <button type="button" id="drawerPrintBtn" class="btn-outline-sm">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+                <span data-i18n="btnPrint">Farm A4</span>
+              </button>
+              <button type="button" id="drawerTourBtn" class="btn-outline-sm">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                <span data-i18n="btnTour">Tour</span>
+              </button>
+            </div>
           </div>
         </div>
-        <button type="button" id="leftNavCloseBtn" class="icon-btn" title="Close navigation panel" aria-label="Close navigation panel">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-      </div>
 
-      <div class="left-nav-body">
-        <span class="left-nav-section-label" data-i18n="leftNavViewsLabel">Workspace Tabs</span>
-        <nav class="left-nav-pills" aria-label="Workspace views">
-          <button type="button" id="railMapBtn" class="left-nav-btn top-nav-btn is-active" data-rail="workspace">
-            <span class="left-nav-icon-box">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-            </span>
-            <span class="left-nav-btn-text">
-              <strong data-i18n="navMap">Map Workspace</strong>
-              <small data-i18n="navMapDesc">Satellite map, parcels &amp; inspector</small>
-            </span>
-          </button>
-          <button type="button" id="railPortfolioBtn" class="left-nav-btn top-nav-btn" data-rail="portfolio">
-            <span class="left-nav-icon-box">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 16v-5"/><path d="M12 16V7"/><path d="M17 16v-8"/></svg>
-            </span>
-            <span class="left-nav-btn-text">
-              <strong data-i18n="navPortfolio">Farm Portfolio</strong>
-              <small data-i18n="navPortfolioDesc">Cross-field water &amp; 4-yr profit</small>
-            </span>
-          </button>
-          <button type="button" id="railCropsBtn" class="left-nav-btn top-nav-btn" data-rail="crops">
-            <span class="left-nav-icon-box">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>
-            </span>
-            <span class="left-nav-btn-text">
-              <strong data-i18n="navCrops">12-Crop Matrix</strong>
-              <small data-i18n="navCropsDesc">Water demand, roots &amp; nitrogen</small>
-            </span>
-          </button>
-          <button type="button" id="railScienceBtn" class="left-nav-btn top-nav-btn" data-rail="science">
-            <span class="left-nav-icon-box">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-            </span>
-            <span class="left-nav-btn-text">
-              <strong data-i18n="navScience">NASA Science</strong>
-              <small data-i18n="navScienceDesc">Live NASA POWER, FAO-56 &amp; SoilGrids</small>
-            </span>
-          </button>
-        </nav>
-
-        <div class="left-nav-mobile-tools">
-          <span class="left-nav-section-label" data-i18n="leftNavToolsLabel">Field Tools &amp; Export</span>
-          <div class="left-nav-tools-grid">
-            <button type="button" id="drawerDrawFieldBtn" class="btn-primary-sm">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="4" height="4" rx="1"/><rect x="17" y="3" width="4" height="4" rx="1"/><rect x="17" y="17" width="4" height="4" rx="1"/><rect x="3" y="17" width="4" height="4" rx="1"/><line x1="7" y1="5" x2="17" y2="5"/><line x1="19" y1="7" x2="19" y2="17"/><line x1="17" y1="19" x2="7" y2="19"/><line x1="5" y1="17" x2="5" y2="7"/></svg>
-              <span data-i18n="btnDrawField">Draw Field</span>
-            </button>
-            <button type="button" id="drawerImportGeoBtn" class="btn-outline-sm">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              <span data-i18n="btnGeoJson">GeoJSON</span>
-            </button>
-            <button type="button" id="drawerPrintBtn" class="btn-outline-sm">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
-              <span data-i18n="btnPrint">Farm A4</span>
-            </button>
-            <button type="button" id="drawerTourBtn" class="btn-outline-sm">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              <span data-i18n="btnTour">Tour</span>
-            </button>
-          </div>
+        <div class="left-nav-foot">
+          <a id="drawerGithubLink" class="left-nav-repo-link" href="https://github.com/zbaseRoot/NasaHackatonProject-Field-Shift-" target="_blank" rel="noopener noreferrer" title="Project repository on GitHub" data-i18n-title="githubRepoTitle">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            <span class="left-nav-repo-label" data-i18n="githubRepoTitle">Project repository on GitHub</span>
+          </a>
         </div>
-      </div>
+      </aside>
 
-      <div class="left-nav-foot">
-        <a id="drawerGithubLink" class="left-nav-repo-link" href="https://github.com/zbaseRoot/NasaHackatonProject-Field-Shift-" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-          <span data-i18n="githubRepoTitle">Project repository on GitHub</span>
-        </a>
-      </div>
-    </aside>
-
-    <div id="workspaceBody" class="workspace-body">
+      <div class="workspace-views-stage">
+        <div id="workspaceBody" class="workspace-body">
       <main class="map-stage">
         <div id="globalMap" class="global-map"></div>
 
@@ -748,6 +735,8 @@
         </div>
       </div>
     </section>
+      </div>
+    </div>
   </div>
 
   <div id="nameFieldModal" class="modal-backdrop is-hidden" role="dialog" aria-modal="true" aria-labelledby="nameModalTitle">
@@ -827,7 +816,7 @@
   <div id="appToast" class="app-toast is-hidden" role="status" aria-live="polite"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="data.js?v=20261115k"></script>
-  <script src="app.js?v=20261115k"></script>
+  <script src="data.js?v=20261115m"></script>
+  <script src="app.js?v=20261115m"></script>
 </body>
 </html>
