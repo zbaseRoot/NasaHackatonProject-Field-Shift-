@@ -3780,14 +3780,19 @@ html[data-theme="dark"] .verdict-banner {
   }
 
   .top-command-bar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    min-height: 48px;
   }
 
   .workspace-shell {
     --nav-rail-w: 54px;
     height: auto;
-    min-height: calc(100dvh - 48px);
+    min-height: 100dvh;
+    padding-top: 48px;
     overflow: visible;
   }
 
@@ -3880,11 +3885,12 @@ html[data-theme="dark"] .verdict-banner {
 @media (max-width: 900px) {
   .top-command-bar {
     padding: 6px 10px;
+    height: 46px;
     min-height: 46px;
   }
 
   .workspace-shell {
-    min-height: calc(100dvh - 46px);
+    padding-top: 46px;
   }
 
   .left-nav-drawer {

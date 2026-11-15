@@ -285,6 +285,8 @@
     applyStaticTranslations();
     populateStaticSelects();
     renderAll();
+    renderFieldPolygons(false);
+    renderZonesOverlay();
     if (typeof refreshTourLanguage === "function") refreshTourLanguage();
     showToast(newLang === "ua" ? "Мову інтерфейсу переключено на українську" : "Interface language switched to English");
   }
@@ -2762,6 +2764,8 @@
     renderRotationTab(field, recSim, tradSim);
     renderImpactTab(field, recSim, tradSim);
     renderReportTab(field, recSim, tradSim);
+    renderPortfolioModal();
+    renderCropLibraryModal();
     renderScienceModal();
     syncCustomSelects();
     syncRangeTracks();
